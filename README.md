@@ -3,6 +3,8 @@
 Vagrant based playground for setting up two Redis instances with 
 replication, failover and correct load balancing.
 
+Supported Redis version: `v3.x`
+
 ## setting up
 
 ```
