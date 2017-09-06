@@ -44,6 +44,7 @@ sudo rm -rf /data/redis-farm/*.rdb
 sudo rm -rf /data/redis-farm/*.log
 
 sudo mkdir -p /data/haproxy
+sudo chown -R vagrant:vagrant /data/haproxy
 sudo cp -f /vagrant/haproxy.conf /etc/haproxy/haproxy.cfg
 
 #

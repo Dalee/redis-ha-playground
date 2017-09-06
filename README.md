@@ -3,25 +3,21 @@
 Vagrant based playground for setting up two Redis instances with 
 replication, failover and correct load balancing.
 
-Supported Redis version: `v3.x`
-
 ## setting up
 
 ```
 $ vagrant up
 $ vagrant ssh
-$ cd /vagrant
-$ ./setup.sh
+$ /vagrant/setup.sh
 ```
 
-Base configuration:
-* redis on port `6379` becomes master
-* redis on port `6380` becomes slave
-* redis-sentinel on port `26379` will monitor master availability and perform failover
-* haproxy on port `6378` becomes balancer, traffic always routed to `master` redis node
-* redis data directory is `/data/redis-farm/`
+Initial configuration:
+* redis on port `6379` is `master`
+* redis on port `6380` is `slave`
+* redis-sentinel on port `26379` is failover arbiter
+* haproxy on port `6378` is redis balancer
 
-> Each run of `setup.sh` script, reverts state to base configuration.
+> Each run of `setup.sh` script, reverts state to initial configuration.
 
 ## checking setup
 
@@ -39,7 +35,8 @@ role:slave
 
 ensure `master` is accessible via haproxy:
 ```bash
-$ redis-cli -p 6378 info replication | grep -E "role|connected_slaves"
+$ redis-cli -p 6378 info | grep -E "role|connected_slaves|config_file"
+config_file:/data/redis-farm/redis-6379.conf
 role:master
 connected_slaves:1
 ```
