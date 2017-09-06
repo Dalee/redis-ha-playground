@@ -1,0 +1,12 @@
+[Unit]
+Description=Redis:sentinel
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/redis-server /data/redis-farm/redis-sentinel.conf --sentinel
+ExecStop=/bin/redis-cli -h 127.0.0.1 -p 26379 shutdown
+User=vagrant
+Group=vagrant
+
+[Install]
+WantedBy=multi-user.target

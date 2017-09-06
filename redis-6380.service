@@ -1,0 +1,12 @@
+[Unit]
+Description=Redis:6380
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/redis-server /data/redis-farm/redis-6380.conf
+ExecStop=/bin/redis-cli -h 127.0.0.1 -p 6380 shutdown
+User=vagrant
+Group=vagrant
+
+[Install]
+WantedBy=multi-user.target
