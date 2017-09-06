@@ -1,4 +1,4 @@
-# Minimal Redis High Availability setup
+# Minimal Redis 3.x High Availability setup
 
 Vagrant based playground for setting up two Redis instances with 
 replication, failover and correct load balancing.
